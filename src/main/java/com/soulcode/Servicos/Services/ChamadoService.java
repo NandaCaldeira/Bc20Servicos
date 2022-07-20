@@ -90,6 +90,7 @@ public class ChamadoService {
     //Método para editar um chamado
     // no momento da edição de um chamado devemos preservar o cliente e o funcionário desse chamado
     // vamos editar os dados do chamado, mas contiuamos com os dados do cliente e os dados do funcionário
+    @CachePut(value = "chamadoCache", key = "#chamado.idChamado")
     public Chamado editarChamado(Chamado chamado, Integer idChamado){
         //instanciamos aqui um objeto do tipo Chamado para guardar os dados do chamados
         //sem as novas alteracoes
@@ -106,6 +107,7 @@ public class ChamadoService {
     // ou trocar o funcionário de determinado chamado
     // -> regra -> no momento em que um determinado chamado é atribuído a um funcionário
     //             o status do chamado precisa ser alterado para ATRIBUIDO
+    @CachePut(value = "chamadoCache", key = "#chamado.idChamado")
     public Chamado atribuirFuncionario(Integer idChamado, Integer idFuncionario){
         // buscar os dados do funcionário que vai ser atibuído a esse chamado
         Optional<Funcionario> funcionario = funcionarioRepository.findById(idFuncionario);

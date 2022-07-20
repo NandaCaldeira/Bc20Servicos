@@ -38,6 +38,10 @@ public class CacheConfig {
                         RedisCacheConfiguration.defaultCacheConfig()
                                 .entryTtl(Duration.ofSeconds(5))
                                 .serializeValuesWith(serializationPair)
+                ).withCacheConfiguration("authUserDetailService",
+                        RedisCacheConfiguration.defaultCacheConfig()
+                                .entryTtl(Duration.ofSeconds(60))
+                                .serializeValuesWith(serializationPair)
                 );
     }
 }
